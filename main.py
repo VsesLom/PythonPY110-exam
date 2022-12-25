@@ -11,7 +11,7 @@ def main() -> None:
     :return: None
     """
     gen_dict = gen_func()
-    book_list = [next(gen_dict) for _ in range(10)]
+    book_list = [next(gen_dict) for _ in range(100)]
     with open("books.json", "w", encoding="utf-8") as f_json:
         json.dump(book_list, f_json, ensure_ascii=False, indent=4)
 
