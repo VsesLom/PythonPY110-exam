@@ -10,10 +10,10 @@ def main() -> None:
     Основная функция, формирует файл json.
     :return: None
     """
-    a = gen_func()
-    book_list = [next(a) for _ in range(100)]
-    with open("books.json", "w", encoding="utf-8") as f:
-        json.dump(book_list, f, ensure_ascii=False, indent=4)
+    gen_dict = gen_func()
+    book_list = [next(gen_dict) for _ in range(10)]
+    with open("books.json", "w", encoding="utf-8") as f_json:
+        json.dump(book_list, f_json, ensure_ascii=False, indent=4)
 
 
 def random_year() -> int:
@@ -55,7 +55,8 @@ def random_price() -> float:
     Возвращает случайное значение цены книги от 1 до 100. Используется модуль random.
     :return: значение цены в виде числа с плавающей запятой
     """
-    return random.uniform(1, 100)
+    rand = random.uniform(1.00, 100.01)
+    return round(rand, 2)
 
 
 def random_author() -> list:
@@ -75,15 +76,16 @@ def random_author() -> list:
     return author_list
 
 
-def gen_func(start: int=1) -> dict:
+def gen_func(start: int = 1) -> dict:
     """
     Функция-генератор для формирования словарей с информацией по книгам.
+    :param data:
     :param start: начальное значение для счетчика
     :return: None
     """
     pk = start
-    with open("books.txt", "r", encoding="utf-8") as f:
-        data = f.readlines()
+    with open("books.txt", "r", encoding="utf-8") as f_txt:
+        data = f_txt.readlines()
     while True:
         book_dict = {"model": conf.MODEL, "pk": pk, "fields": {"title": data[random.randint(0, 4)].rstrip(),
                                                                 "year": random_year(),
