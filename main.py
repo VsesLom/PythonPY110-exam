@@ -79,8 +79,7 @@ def random_author() -> list:
 def gen_func(start: int = 1) -> dict:
     """
     Функция-генератор для формирования словарей с информацией по книгам.
-    :param data:
-    :param start: начальное значение для счетчика
+    :param start: начальное значение для счетчика (по умолчанию равно 1)
     :return: None
     """
     pk = start
